@@ -32,10 +32,12 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="resource/material.min.css" media="screen" title="material lib" charset="utf-8">
     <link rel="stylesheet" href="css/normalize.css">
+    <!-- <link rel="stylesheet" href="css/external.css"> -->
       <link rel="stylesheet" href="css/external.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/loginstyle.css">
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-    <script src="resource/material.min.js"></script>
+    <!-- <script src="resource/material.min.js"></script> -->
           <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <style>
         #view-source {
@@ -56,7 +58,7 @@
         <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
             <div class="mdl-layout__header-row">
                 <span class="android-title mdl-layout-title">
-            <img class="android-logo-image" src="images/android-logo.png">
+          <a href="index1.html"><img class="android-logo-image" src="images/android-logo.png"></a>
           </span>
                 <!-- Add spacer, to align navigation to the right in desktop -->
                 <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -126,7 +128,7 @@
             </nav>
         </div>
 
-        <div class="android-content mdl-layout__content">
+        <!-- <div class="android-content mdl-layout__content">
             <a name="top"></a>
             <div class="android-be-together-section mdl-typography--text-center">
                 <div class="logo-font android-slogan">be together. not the same.</div>
@@ -135,13 +137,98 @@
                     <a href=""><img src="images/andy.png"> create your android character</a>
                 </div>
         </div>
-    </div>
+      </div> -->
+
 <!-- ---------------------------------------login module------------------------------------------------------ -->
+<div class="android-content mdl-layout__content">
+<div class="form">
+
+  <ul class="tab-group">
+    <li class="tab active"><a href="#signup">Sign Up</a></li>
+    <li class="tab"><a href="#login">Log In</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="signup">
+      <h1>Sign Up for Free</h1>
+
+      <form action="/" method="post">
+
+        <div class="top-row">
+          <div class="field-wrap">
+            <label>
+                <i class="material-icons">person</i>&nbsp;First Name<span class="req">*</span>
+              </label>
+            <input type="text" required autocomplete="off" />
+          </div>
+
+          <div class="field-wrap">
+            <label>
+                Last Name<span class="req">*</span>
+              </label>
+            <input type="text" required autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="field-wrap">
+          <label>
+              <i class="material-icons">email</i>&nbsp;Email Address<span class="req">*</span>
+            </label>
+          <input type="email" required autocomplete="off" />
+        </div>
+
+        <div class="field-wrap">
+          <label>
+              Set A Password<span class="req">*</span>
+            </label>
+          <input type="password" required autocomplete="off" />
+        </div>
+
+        <button type="submit" class="button button-block" />Get Started</button>
+      </form>
+
+    </div>
+
+    <div id="login">
+      <h1>Welcome Back!</h1>
+
+      <form action="/" method="post">
+
+        <div class="field-wrap">
+          <label>
+              Email Address<span class="req">*</span>
+            </label>
+          <input type="email" required autocomplete="off" />
+        </div>
+
+        <div class="field-wrap">
+          <label>
+              Password<span class="req">*</span>
+            </label>
+          <input type="password" required autocomplete="off" />
+        </div>
+
+        <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+        <button class="button button-block" />Log In</button>
+
+      </form>
+
+    </div>
+
+  </div>
+  <!-- tab-content -->
+
+</div>
+<!-- /form -->
+</div>
 
 <!-- ---------------------------------------login module------------------------------------------------------ -->
 
     <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a> -->
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src="js/loginindex.js"></script>
 </body>
 
 </html>
