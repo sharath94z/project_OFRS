@@ -3,7 +3,7 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    <sharath aradhyamath> -- <developer> -- <twitter>
 
 # THANKS
 
@@ -13,3 +13,4 @@
 
     CSS3, HTML5
     Apache Server Configs, jQuery, Modernizr, Normalize.css
+ ,google materiallite, php
