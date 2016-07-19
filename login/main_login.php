@@ -3,6 +3,7 @@
 
   if(isset($_SESSION['username'])){
     header("location:../index.php");
+
   }
 ?>
     <!DOCTYPE html>
@@ -24,6 +25,7 @@
         <!-- Page styles -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+           <link type="text/css" rel="stylesheet" href="../css/materialmain.min.css">
         <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.min.css">
         <link rel="stylesheet" href="../styles.css">
         <!-- <link rel="stylesheet" href="css/material.min.css"> -->
@@ -53,6 +55,13 @@
                 background: url('../images/mountain_boy.jpg') center 30% no-repeat;
                 background-size: cover;
             }
+            
+              @font-face{
+		font-family: 'super-text';
+		src:url('../Sequel-Regular.ttf');
+		format('truetype');
+
+	}
         </style>
     </head>
 
@@ -184,7 +193,7 @@
                         <!---------------------------------login module------------------------------->
                     
                         <div id="login">
-                            <h1>Welcome Back!</h1>
+                            <h1 style="font-size:60px;font-family:super-text">Welcome Back!</h1>
 
                             <form class="form-signin" name="form1" method="post" action="checklogin.php">
 
@@ -205,7 +214,7 @@
 
                                 <p class="forgot"><a href="#">Forgot Password?</a></p>
 
-                                <button class="button button-block" name="Submit" id="submit" type="submit" />Log In</button>
+                                <button class="button button-block" name="Submit" id="submit" type="submit" style="font-family:super-text" />Log In</button>
 
                             </form>
 

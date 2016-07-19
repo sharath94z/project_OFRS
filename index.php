@@ -2,7 +2,7 @@
   session_start();
 //PUT THIS HEADER ON TOP OF EACH UNIQUE PAGE
   if(!isset($_SESSION['username'])){
-    header("location:login/main_login.php");
+    header("location:../login/main_login.php");
   }
 ?>
 <!DOCTYPE html>

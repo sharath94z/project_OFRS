@@ -18,7 +18,8 @@ $response = $login->checkLogin($tbl_name, $myusername, $mypassword);
 
 	if ($response == 'true'){
 		echo "true";
-		$_SESSION['username'] = 'myusername';
+		$_SESSION['username'] = $myusername;
+		// 'myusername';
 		$_SESSION['password'] = 'mypassword';
 	}
 	else {

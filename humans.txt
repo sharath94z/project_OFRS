@@ -1,9 +1,10 @@
 # humanstxt.org/
 # The humans responsible & technology colophon
 
+
 # TEAM
 
-    <sharath aradhyamath> -- <developer> -- <twitter>
+    <sharath aradhyamath> -- <sharatham94@gmail.com> --linkedin<https://in.linkedin.com/in/sharath-aradhyamath-9572a19a> <developer> -- <twitter>
 
 # THANKS
 
@@ -11,6 +12,6 @@
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5
-    Apache Server Configs, jQuery, Modernizr, Normalize.css
- ,google materiallite, php
+    CSS3, HTML5,javascript
+    Apache Server Configs,,css fra Normalize.css
+ ,google materiallite,php,jquery,ajax, jQuery, Modernizr.

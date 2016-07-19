@@ -46,6 +46,21 @@
 		format('truetype');
 
 	}
+        .mdl-layout {
+                position: relative;
+                height: 800px;
+                width: auto;
+                background-color: #f3f3f3;
+                background: url('../images/polyimage.JPG') center 30% no-repeat;
+                background-size: cover;
+            }
+        
+              @font-face{
+		font-family: 'super-text';
+		src:url('../Sequel-Regular.ttf');
+		format('truetype');
+
+	}
     </style>
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
     <!-- Bootstrap -->
@@ -166,25 +181,27 @@
 -->
 <!--      <div class="tab-content">-->
         <div id="signup">   
-          <h1>Sign Up for Free</h1>
+          <h1 style="font-family:super-text">Sign Up for Free</h1>
           
           <form class="form-signup" id="usersignup" name="usersignup" method="post" action="createuser.php">
           
-          <div class="top-row">
+<!--          <div class="top-row">-->
             <div class="field-wrap">
               <label>
-                First Name<span class="req">*</span>
+                User Name<span class="req">*</span>
               </label>
               <input name="newuser" id="newuser" type="text" class="form-control" autofocus required autocomplete="off" />
             </div>
         
+<!--
             <div class="field-wrap">
               <label>
                 Last Name<span class="req">*</span>
               </label>
               <input type="text"required autocomplete="off"/>
             </div>
-          </div>
+-->
+<!--          </div>-->
 
           <div class="field-wrap">
             <label>
@@ -193,6 +210,8 @@
             <input name="email" id="email" type="text" class="form-control" required autocomplete="off"/>
           </div>
           
+              
+    <div class="top-row">
           <div class="field-wrap">
             <label>
               Set A Password<span class="req">*</span>
@@ -206,8 +225,9 @@
             </label>
             <input name="password2" id="password2" type="password" class="form-control" required autocomplete="off"/>
           </div>
+              </div>
           
-          <button name="Submit" id="submit" type="submit" class="button button-block"/>Get Started</button>
+          <button name="Submit" id="submit" type="submit" class="button button-block" style="font-family:super-text"/>Get Started</button>
             <div id="message"></div>
           </form>
 

@@ -18,7 +18,7 @@ $admin_email = '';
 //EMAIL SETTINGS
 //SEND TEST EMAILS THROUGH FORM TO https://www.mail-tester.com GENERATED ADDRESS FOR SPAM SCORE
 $from_email = 'samstev94z@gmail.com'; //Webmaster email
-$from_name = 'Test Email'; //"From name" displayed on email
+$from_name = 'Fitness Wolf'; //"From name" displayed on email
 
 //Find specific server settings at https://www.arclab.com/en/kb/email/list-of-smtp-and-pop3-servers-mailserver-list.html
 $mailServerType = 'smtp';
