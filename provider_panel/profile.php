@@ -4,7 +4,7 @@
   if(!isset($_SESSION['username'])){
     header("location:../login/main_login.php");
   }
-  include 'booking_script.php';
+include 'profile_script.php';
 ?>
     <!doctype html>
     <html lang="en">
@@ -18,7 +18,7 @@
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta name="mobile-web-app-capable" content="yes">
-        <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+        <link rel="icon" sizes="192x192" href="../favicon.ico">
 
         <!-- Add to homescreen for Safari on iOS -->
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,6 +26,7 @@
         <meta name="apple-mobile-web-app-title" content="Material Design Lite">
         <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
         <link rel="stylesheet" type="text/css" href="dashboard.css">
+        <script src="../js/jquery.form-validator.min.js"></script>
 
         <!-- Tile icon for Win8 (144x144 + tile color) -->
         <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
@@ -37,11 +38,89 @@
         <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
-    
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!--    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">-->
         <link rel="stylesheet" href="styles.css">
+
+        <!--
+
+      --------------------------- bropdown
+-->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+        
+        <script>
+            $(function () {
+                var availableTags = [
+      "ActionScript",
+      "Bangalore",
+      "Jaynagar",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+                $("#tags").autocomplete({
+                    source: availableTags
+                });
+            });
+            
+        //ajax
+            
+            function postData(event){
+event.preventDefault()
+$.ajax({
+    type: "POST",
+    url: "profile_script.php",
+    data: $('#myForm').serialize()
+    }).done(function( result ) {
+        // do something
+//          $("#status_text").html(data);
+        $('#sample3').val('');
+        $('#sample4').val('');
+    $("#successMessage").show();
+//     $( "#dialog" ).dialog();
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+    
+    });
+}
+            console.log("data updated");
+            //ajax close
+        </script>
+
+
+
+        <!--
+
+      ---------------------------
+-->
         <style>
             #view-source {
                 position: fixed;
@@ -52,21 +131,23 @@
                 margin-bottom: 40px;
                 z-index: 900;
             }
-
-            .demo-card-square > .mdl-card__title {
-                color: #fff;
-                background: url('../images/resizeploy.JPG') bottom right 15% no-repeat #46B6AC;
-            }
-            .mdl-navigation__link{
-            font-size:15px;
             
+/*            font face*/
+               @font-face{
+		font-family: 'super-text';
+		src:url('../Sequel-Regular.ttf');
+		format('truetype');
+
+	}      
+            
+            .regform{
+                box-shadow: 10px 10px 5px #888888;  
+                height: 400px;
+                width: 800px;
             }
+            
+            
         </style>
-        <script type="text/javascript">
-        function send(){
-          console.log("booked");
-        }
-        </script>
     </head>
 
     <body>
@@ -95,26 +176,26 @@
                     </ul>
                 </div>
             </header>
-            <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50" >
+            <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <img src="images/user.jpg" class="demo-avatar">
                     <div class="demo-avatar-dropdown">
-                        <span>hello@example.com</span>
+                        <span><?php echo $user ?>@example.com</span>
                         <div class="mdl-layout-spacer"></div>
                         <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">arrow_drop_down</i>
                             <span class="visuallyhidden">Accounts</span>
                         </button>
                         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                            <li class="mdl-menu__item">hello@example.com</li>
+                            <li class="mdl-menu__item"><?php echo $user ?>@example.com</li>
                             <li class="mdl-menu__item">info@example.com</li>
                             <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
                         </ul>
                     </div>
                 </header>
-                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800" >
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation" >home</i>Home</a>
-                    <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href="../provider_panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>Profile</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
@@ -126,42 +207,60 @@
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
             </div>
-            
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
-
-                    <div class="mdl-grid">
-                      <?php
-                      $result = $mysqli->query("select s.schedule_id,l.lname,se.sname,s.start_time,p.provider_name,s.end_time
-                      from schedule s join locations l on s.locationid_fk=l.pincode join services se on s.serviceid_fk=se.service_id join provider_members p on s.providerid_fk = p.id");
-                      while($row = $result->fetch_assoc()) {
-          // echo "<br> sid: ". $row["schedule_id"]. " -locations: ". $row["lname"]. "-service" . $row["sname"] . "<br>";
-                          //TIME_FORMAT( `day_open_time`, "%h:%i %p" )
-
-echo '<div class="mdl-cell mdl-cell--4-col">
-    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand"><strong>
-                        <h1 class="mdl-card__title-text">'.$row["provider_name"].'</h1>
-                            <h2 class="mdl-card__title-text">'.$row["sname"].'</h2>
+                    <h2 style="font-family:Titillium Web;color:#52a4ff">Profile</h2>&nbsp;&nbsp;&nbsp;
+                    <form id="myForm" class="regform" method="post">
+<!--                        action="profile_script.php"-->
+                        <div class="top-row">
+                            <!-- optional-->
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="sample3" name="cname" data-validation="required">
+                                <label class="mdl-textfield__label" for="sample3">center name</label>
+                            </div>
+                            <br>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" name="phno">
+                                <label class="mdl-textfield__label" for="sample4">Phone Number</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
                         </div>
-                        <div class="mdl-card__supporting-text">
-                        '.$row["lname"]."&nbsp; &nbsp;".$row["start_time"]."&nbsp; &nbsp;".$row["end_time"].'
-                        </div></strong>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btn_submit" onclick="send()" >
-      Book Now
-    </a>              </div>
-                    </div>
-  </div>';
-}
-?>
+                        <!-- optional-->
+                        <br>
+                        <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="tags" name="loc">
+                            <label class="mdl-textfield__label" for="tags">location</label>
+                        </div>
+                        <br>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)">Submit</button>
+                        <div id="successMessage" style="display:none;"> Data has been sucessfully updated </div>
+                    </form>
 
-
+<!--  model display
+                    <div id="dialog" title="Basic dialog">
+  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+</div>
+-->
+                        <div id="dialog-message" title="confirmation" style="display:none;">
+  <p>Data has been sucessfilly updated</p>
+</div>
+ 
+                    
                 </div>
             </main>
         </div>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
 
-    <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
+        </svg>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250" style="position: fixed; left: -1000px; height: -1000px;">
+
+        </svg>
+        <style>
+            .regform {
+                background-color: white;
+            }
+        </style>
+<!--        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>-->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 

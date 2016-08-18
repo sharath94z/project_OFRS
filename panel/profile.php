@@ -142,7 +142,7 @@ $.ajax({
 	}      
             
             .regform{
-                box-shadow: 10px 10px 5px #888888;  
+                box-shadow: 7px 10px 10px 5px #888888;  
                 height: 400px;
                 width: 800px;
             }
@@ -172,7 +172,7 @@ $.ajax({
                     <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                         <li class="mdl-menu__item">About</li>
                         <li class="mdl-menu__item">Contact</li>
-                        <li class="mdl-menu__item"><a href="../login/logout.php">Logout</a></li>
+                        <a href="../login/logout.php"><li class="mdl-menu__item">Logout</li></a>
                         <!--              <a href="login/logout.php" class="btn btn-default btn-lg btn-block">Logout</a>-->
                     </ul>
                 </div>

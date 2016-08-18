@@ -75,7 +75,7 @@
                     <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                         <li class="mdl-menu__item">About</li>
                         <li class="mdl-menu__item">Contact</li>
-                        <li class="mdl-menu__item"><a href="../login/logout.php">Logout</a></li>
+                        <li class="mdl-menu__item"><a href="../provider_login/logout.php">Logout</a></li>
                         <!--              <a href="login/logout.php" class="btn btn-default btn-lg btn-block">Logout</a>-->
                     </ul>
                 </div>
@@ -98,11 +98,11 @@
                     </div>
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-                    <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
-                    <a class="mdl-navigation__link" href="../panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href="../map/savedata.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/create_schedule.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>create schedule</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
@@ -114,7 +114,8 @@
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
                     <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                        <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
+                        <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" 
+                        class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
                             <use xlink:href="#piechart" mask="url(#piemask)" />
                             <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82
                                 <tspan font-size="0.2" dy="-0.07">%</tspan>
@@ -247,7 +248,7 @@
                 </g>
             </defs>
         </svg>
-        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
+<!--        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>-->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 

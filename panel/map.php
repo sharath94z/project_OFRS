@@ -4,7 +4,6 @@
   if(!isset($_SESSION['username'])){
     header("location:../login/main_login.php");
   }
-  include 'booking_script.php';
 ?>
     <!doctype html>
     <html lang="en">
@@ -37,7 +36,7 @@
         <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
-    
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!--    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">-->
@@ -52,21 +51,37 @@
                 margin-bottom: 40px;
                 z-index: 900;
             }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 80%;
+      }
+      .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        margin-left: 17px;
+        margin-top: 10px;
+        outline: none;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
 
-            .demo-card-square > .mdl-card__title {
-                color: #fff;
-                background: url('../images/resizeploy.JPG') bottom right 15% no-repeat #46B6AC;
-            }
-            .mdl-navigation__link{
-            font-size:15px;
-            
-            }
+      .controls:focus {
+        border-color: #4d90fe;
+      }
+   
         </style>
-        <script type="text/javascript">
-        function send(){
-          console.log("booked");
-        }
-        </script>
     </head>
 
     <body>
@@ -95,7 +110,7 @@
                     </ul>
                 </div>
             </header>
-            <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50" >
+            <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <img src="images/user.jpg" class="demo-avatar">
                     <div class="demo-avatar-dropdown">
@@ -112,10 +127,10 @@
                         </ul>
                     </div>
                 </header>
-                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800" >
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation" >home</i>Home</a>
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
                     <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
+                    <a class="mdl-navigation__link" href="../panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
@@ -126,42 +141,82 @@
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
             </div>
-            
-            <main class="mdl-layout__content mdl-color--grey-100">
-                <div class="mdl-grid demo-content">
+<!--            <main class="mdl-layout__content mdl-color--grey-100">-->
+               
+                  
+    <div id="map"></div>
 
-                    <div class="mdl-grid">
-                      <?php
-                      $result = $mysqli->query("select s.schedule_id,l.lname,se.sname,s.start_time,p.provider_name,s.end_time
-                      from schedule s join locations l on s.locationid_fk=l.pincode join services se on s.serviceid_fk=se.service_id join provider_members p on s.providerid_fk = p.id");
-                      while($row = $result->fetch_assoc()) {
-          // echo "<br> sid: ". $row["schedule_id"]. " -locations: ". $row["lname"]. "-service" . $row["sname"] . "<br>";
-                          //TIME_FORMAT( `day_open_time`, "%h:%i %p" )
+    <script>
+      // This sample uses the Place Autocomplete widget to allow the user to search
+      // for and select a place. The sample then displays an info window containing
+      // the place ID and other information about the place that the user has
+      // selected.
 
-echo '<div class="mdl-cell mdl-cell--4-col">
-    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand"><strong>
-                        <h1 class="mdl-card__title-text">'.$row["provider_name"].'</h1>
-                            <h2 class="mdl-card__title-text">'.$row["sname"].'</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text">
-                        '.$row["lname"]."&nbsp; &nbsp;".$row["start_time"]."&nbsp; &nbsp;".$row["end_time"].'
-                        </div></strong>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btn_submit" onclick="send()" >
-      Book Now
-    </a>              </div>
-                    </div>
-  </div>';
-}
-?>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 12.971599, lng: 77.594563},
+          zoom: 13
+        });
 
-                </div>
-            </main>
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+          marker.setPlace({
+            placeId: place.place_id,
+            location: place.geometry.location
+          });
+          marker.setVisible(true);
+
+          infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+              'Place ID: ' + place.place_id + '<br>' +
+              place.formatted_address);
+          infowindow.open(map, marker);
+            document.forms["f1"]["pid"].value=place.place_id ;
+        });
+      }
+    </script>
+      <form name="f1"action="savedata.php" method="post" >
+        <input id="pac-input" class="controls" type="text"
+        placeholder="Enter a location">
+       Place ID:<input id="pid" class="controls" type="text" name="fname"
+        placeholder="place iD">
+          <input type="submit"value="save">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAl7vpOMdLRssc2hRm3YnsO_w9yeOiJ5A&libraries=places&callback=initMap"
+        async defer></script>
+          </form>
+<!--            </main>-->
         </div>
-
-    <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 

@@ -4,7 +4,7 @@
   if(!isset($_SESSION['username'])){
     header("location:../login/main_login.php");
   }
-  include 'booking_script.php';
+include 'create_schedulescript.php';
 ?>
     <!doctype html>
     <html lang="en">
@@ -37,11 +37,15 @@
         <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
-    
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!--    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">-->
         <link rel="stylesheet" href="styles.css">
+
+
+        <!---->
+
         <style>
             #view-source {
                 position: fixed;
@@ -55,17 +59,36 @@
 
             .demo-card-square > .mdl-card__title {
                 color: #fff;
-                background: url('../images/resizeploy.JPG') bottom right 15% no-repeat #46B6AC;
-            }
-            .mdl-navigation__link{
-            font-size:15px;
-            
+                background: url('../images/logo.png') bottom right 15% no-repeat #46B6AC;
             }
         </style>
-        <script type="text/javascript">
-        function send(){
-          console.log("booked");
-        }
+        <!-- <script>
+            function postData(event) {
+                event.preventDefault()
+                $.ajax({
+                    type: "POST",
+                    url: "create_schedulescript.php",
+                    data: $('#sform').serialize()
+                }).done(function (result) {
+                    $('#tags').val('');
+                    console.log("its working");
+
+                });
+            }
+        </script> -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script>
+              $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+            $(function () {
+                var availableTags = <?php echo json_encode($data) ?>;
+                $("#tags").autocomplete({
+                    source: availableTags
+                });
+            });
         </script>
     </head>
 
@@ -95,7 +118,7 @@
                     </ul>
                 </div>
             </header>
-            <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50" >
+            <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
                 <header class="demo-drawer-header">
                     <img src="images/user.jpg" class="demo-avatar">
                     <div class="demo-avatar-dropdown">
@@ -112,11 +135,11 @@
                         </ul>
                     </div>
                 </header>
-                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800" >
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation" >home</i>Home</a>
+                <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
                     <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
@@ -126,42 +149,24 @@
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
             </div>
-            
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
-
-                    <div class="mdl-grid">
-                      <?php
-                      $result = $mysqli->query("select s.schedule_id,l.lname,se.sname,s.start_time,p.provider_name,s.end_time
-                      from schedule s join locations l on s.locationid_fk=l.pincode join services se on s.serviceid_fk=se.service_id join provider_members p on s.providerid_fk = p.id");
-                      while($row = $result->fetch_assoc()) {
-          // echo "<br> sid: ". $row["schedule_id"]. " -locations: ". $row["lname"]. "-service" . $row["sname"] . "<br>";
-                          //TIME_FORMAT( `day_open_time`, "%h:%i %p" )
-
-echo '<div class="mdl-cell mdl-cell--4-col">
-    <div class="demo-card-square mdl-card mdl-shadow--2dp">
-                        <div class="mdl-card__title mdl-card--expand"><strong>
-                        <h1 class="mdl-card__title-text">'.$row["provider_name"].'</h1>
-                            <h2 class="mdl-card__title-text">'.$row["sname"].'</h2>
+                    <form name="schedule" method="post" id="sform" action="create_schedulescript.php">
+                        <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" id="tags" name="srname">
+                            <label class="mdl-textfield__label" for="tags">services</label>
                         </div>
-                        <div class="mdl-card__supporting-text">
-                        '.$row["lname"]."&nbsp; &nbsp;".$row["start_time"]."&nbsp; &nbsp;".$row["end_time"].'
-                        </div></strong>
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" id="btn_submit" onclick="send()" >
-      Book Now
-    </a>              </div>
-                    </div>
-  </div>';
-}
-?>
-
-
+                        <p>Date: <input type="text" id="datepicker" name="date"></p>
+                        <p>Start Time:<input type="time" name="s_time"/></p>
+                        <p>End Time:<input type="time" name="e_time"/></p>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)" type="submit">Submit</button>
+                    </form>
                 </div>
             </main>
         </div>
 
-    <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
+
+        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 
