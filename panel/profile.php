@@ -53,7 +53,13 @@ include 'profile_script.php';
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <link rel="stylesheet" href="/resources/demos/style.css">
         <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-        
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js" charset="utf-8"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/additional-methods.js" charset="utf-8"></script>
+        <!-- validation -->
+
+
+
+
         <script>
             $(function () {
                 var availableTags = [
@@ -84,9 +90,9 @@ include 'profile_script.php';
                     source: availableTags
                 });
             });
-            
+
         //ajax
-            
+
             function postData(event){
 event.preventDefault()
 $.ajax({
@@ -109,7 +115,7 @@ $.ajax({
         }
       }
     });
-    
+
     });
 }
             console.log("data updated");
@@ -132,22 +138,17 @@ $.ajax({
                 margin-bottom: 40px;
                 z-index: 900;
             }
-            
+
 /*            font face*/
                @font-face{
 		font-family: 'super-text';
 		src:url('../Sequel-Regular.ttf');
 		format('truetype');
 
-	}      
-            
-            .regform{
-                box-shadow: 7px 10px 10px 5px #888888;  
-                height: 400px;
-                width: 800px;
-            }
-            
-            
+	}
+
+
+
         </style>
     </head>
 
@@ -211,12 +212,12 @@ $.ajax({
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
                     <h2 style="font-family:Titillium Web;color:#52a4ff">Profile</h2>&nbsp;&nbsp;&nbsp;
-                    <form id="myForm" class="regform" method="post">
+                    <form id="myForm" method="post">
 <!--                        action="profile_script.php"-->
                         <div class="top-row">
                             <!-- optional-->
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="sample3" name="fname" data-validation="required">
+                                <input class="mdl-textfield__input" type="text" id="sample3" name="fname">
                                 <label class="mdl-textfield__label" for="sample3">First Name</label>
                             </div>&nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -256,7 +257,7 @@ $.ajax({
                             <label class="mdl-textfield__label" for="tags">location</label>
                         </div>
                         <br>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)">Submit</button>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)" type="submit">Submit</button>
                         <div id="successMessage" style="display:none;"> Data has been sucessfully updated </div>
                     </form>
 
@@ -268,24 +269,14 @@ $.ajax({
                         <div id="dialog-message" title="confirmation" style="display:none;">
   <p>Data has been sucessfilly updated</p>
 </div>
- 
-                    
+
+
                 </div>
             </main>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
-
-        </svg>
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 250" style="position: fixed; left: -1000px; height: -1000px;">
-
-        </svg>
-        <style>
-            .regform {
-                background-color: white;
-            }
-        </style>
 <!--        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>-->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js" charset="utf-8"></script>
     </body>
 
     </html>

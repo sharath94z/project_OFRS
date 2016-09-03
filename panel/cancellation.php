@@ -4,7 +4,7 @@
   if(!isset($_SESSION['username'])){
     header("location:../login/main_login.php");
   }
-include 'profile_script.php';
+ include 'cancellation_script.php';
 ?>
     <!doctype html>
     <html lang="en">
@@ -18,7 +18,7 @@ include 'profile_script.php';
 
         <!-- Add to homescreen for Chrome on Android -->
         <meta name="mobile-web-app-capable" content="yes">
-        <link rel="icon" sizes="192x192" href="../favicon.ico">
+        <link rel="icon" sizes="192x192" href="images/android-desktop.png">
 
         <!-- Add to homescreen for Safari on iOS -->
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,7 +26,6 @@ include 'profile_script.php';
         <meta name="apple-mobile-web-app-title" content="Material Design Lite">
         <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
         <link rel="stylesheet" type="text/css" href="dashboard.css">
-        <script src="../js/jquery.form-validator.min.js"></script>
 
         <!-- Tile icon for Win8 (144x144 + tile color) -->
         <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
@@ -43,84 +42,6 @@ include 'profile_script.php';
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!--    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">-->
         <link rel="stylesheet" href="styles.css">
-
-        <!--
-
-      --------------------------- bropdown
--->
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-
-        <script>
-            $(function () {
-                var availableTags = [
-      "ActionScript",
-      "Bangalore",
-      "Jaynagar",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-                $("#tags").autocomplete({
-                    source: availableTags
-                });
-            });
-
-            //ajax
-
-            function postData(event) {
-                event.preventDefault()
-                $.ajax({
-                    type: "POST",
-                    url: "profile_script.php",
-                    data: $('#myForm').serialize()
-                }).done(function (result) {
-                    // do something
-                    //          $("#status_text").html(data);
-                    $('#sample3').val('');
-                    $('#sample4').val('');
-                    $("#successMessage").show();
-                    //     $( "#dialog" ).dialog();
-                    $("#dialog-message").dialog({
-                        modal: true,
-                        buttons: {
-                            Ok: function () {
-                                $(this).dialog("close");
-                            }
-                        }
-                    });
-
-                });
-            }
-            console.log("data updated");
-            //ajax close
-        </script>
-
-
-
-        <!--
-
-      ---------------------------
--->
         <style>
             #view-source {
                 position: fixed;
@@ -130,13 +51,6 @@ include 'profile_script.php';
                 margin-right: 40px;
                 margin-bottom: 40px;
                 z-index: 900;
-            }
-            /*            font face*/
-            
-            @font-face {
-                font-family: 'super-text';
-                src: url('../Sequel-Regular.ttf');
-                format('truetype');
             }
         </style>
     </head>
@@ -171,26 +85,25 @@ include 'profile_script.php';
                 <header class="demo-drawer-header">
                     <img src="images/user.jpg" class="demo-avatar">
                     <div class="demo-avatar-dropdown">
-                        <span><?php echo $user ?>@example.com</span>
+                        <span>hello@example.com</span>
                         <div class="mdl-layout-spacer"></div>
                         <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">arrow_drop_down</i>
                             <span class="visuallyhidden">Accounts</span>
                         </button>
                         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-                            <li class="mdl-menu__item">
-                                <?php echo $user ?>@example.com</li>
+                            <li class="mdl-menu__item">hello@example.com</li>
                             <li class="mdl-menu__item">info@example.com</li>
                             <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
                         </ul>
                     </div>
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="../provider_panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-                    <a class="mdl-navigation__link" href="../provider_panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>Profile</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+                    <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
+                    <a class="mdl-navigation__link" href="../panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
+                    <a class="mdl-navigation__link" href="../panel/appointment.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <a class="mdl-navigation__link" href="../map/savedata.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
@@ -201,53 +114,44 @@ include 'profile_script.php';
             </div>
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
-                    <h2 style="font-family:Titillium Web;color:#52a4ff">Profile</h2>&nbsp;&nbsp;&nbsp;
-                    <form id="myForm" method="post">
-                        <!--                        action="profile_script.php"-->
-                        <div class="top-row">
-                            <!-- optional-->
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="sample3" name="cname" data-validation="required">
-                                <label class="mdl-textfield__label" for="sample3">center name</label>
-                            </div>
-                            <br>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" name="phno">
-                                <label class="mdl-textfield__label" for="sample4">Phone Number</label>
-                                <span class="mdl-textfield__error">Input is not a number!</span>
-                            </div>
-                        </div>
-                        <!-- optional-->
-                        <br>
-                        <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="tags" name="loc">
-                            <label class="mdl-textfield__label" for="tags">location</label>
-                        </div>
-                        <br>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)">Submit</button>
-                        <div id="successMessage" style="display:none;"> Data has been sucessfully updated </div>
-                    </form>
+                    <table class="mdl-data-table mdl-js-data-table">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Material</th>
+                                <th>Quantity</th>
+                                <th>Unit price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+                                <td>250</td>
+                                <td>$2.90</td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
+                                <td>50</td>
+                                <td>$1.25</td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
+                                <td>10</td>
+                                <td>$12.35</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                    <!--  model display
-                    <div id="dialog" title="Basic dialog">
-  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-</div>
--->
-                    <div id="dialog-message" title="confirmation" style="display:none;">
-                        <p>Data has been sucessfilly updated</p>
-                    </div>
-
-
+                    <?php
+                            while($row = $result->fetch_assoc()) { 
+                            echo $row['app_id'];
+                            }
+                    
+                    
+                    ?>
                 </div>
             </main>
-            <style>
-                #myform {
-                    background-color: white;
-                }
-            </style>
         </div>
-        <!--
-        <!--        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>-->
+        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 

@@ -156,9 +156,12 @@ include 'create_schedulescript.php';
                             <input class="mdl-textfield__input" type="text" id="tags" name="srname">
                             <label class="mdl-textfield__label" for="tags">services</label>
                         </div>
-                        <p>Date: <input type="text" id="datepicker" name="date"></p>
-                        <p>Start Time:<input type="time" name="s_time"/></p>
-                        <p>End Time:<input type="time" name="e_time"/></p>
+                         <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                       <input type="text" id="datepicker" name="date" class="mdl-textfield__input">
+                         <label class="mdl-textfield__label" for="datepicker">Date</label>
+                        </div>
+                        <p>Start Time:<input type="time" name="s_time" class="mdl-textfield__input"/></p>
+                        <p>End Time:<input type="time" name="e_time" class="mdl-textfield__input"/></p>
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)" type="submit">Submit</button>
                     </form>
                 </div>
