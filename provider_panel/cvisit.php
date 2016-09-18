@@ -2,9 +2,9 @@
   session_start();
 //PUT THIS HEADER ON TOP OF EACH UNIQUE PAGE
   if(!isset($_SESSION['username'])){
-    header("location:../login/main_login.php");
+    header("location:../provider_login/main_login.php");
   }
- include 'cancellation_script.php';
+ include 'cvisitscript.php';
 
 ?>
     <!doctype html>
@@ -64,7 +64,6 @@
                 /*background-color: #BDBDBD;*/
                 /*background-color:#F5F5F5;*/
                 background-color:#bdc3c7;
-            
             }
             h5{
                 font-size: 18px;
@@ -73,8 +72,26 @@
             
             tbody {
                 font-size: 16px;
-
             }
+            .search input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+
         </style>
     </head>
 
@@ -137,18 +154,22 @@
             </div>
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
-                    <table class="mdl-data-table mdl-js-data-table">
-                        <!--                       a.app_id,p.provider_name,l.lname,s.sname,sc.date,sc.start_time,sc.end_time-->
-                        <thead id="thead">
+
+                <!-- <div class="search">            
+               <form name="search" action="cvisitscript.php" method="post">
+            
+                  <input type="text" name="search" placeholder="Search..">
+                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">GO</button>
+                </form>
+                </div> -->
+                
+                    <table class="mdl-data-table mdl-js-data-table">                        <thead id="thead">
                             <tr>
-                                <th class="mdl-data-table__cell--non-numeric"><h5>Appointment ID</h5></th>
-                                <th class="mdl-data-table__cell--non-numeric"><h5>Provider Name</h5></th>
+                                <th class="mdl-data-table__cell--non-numeric"><h5>Appointment_Id</h5></th>
+                                <th class="mdl-data-table__cell--non-numeric"><h5>Name</h5></th>
                                 <th><h5>Service</h5></th>
-                                <th><h5>Location</h5></th>
-                                <th>
-                                    <h5>Date</h5></th>
-                                <th>
-                                    <h5>Start Time</h5></th>
+                                <th><h5>Date</h5></th>
+                                   <th> <h5>Start Time</h5></th>
                                 <th>
                                     <h5>End Time</h5></th>
                                 <th>
@@ -160,14 +181,14 @@
                              while($row = $result->fetch_assoc()) { 
                            echo '<tr>
                                 <td class="mdl-data-table__cell--non-numeric">'.$row["app_id"].'</td>
-                                <td>'.$row["provider_name"].'</td>
+
+                                <td>'.$row["firstname"]." ".$row["lastname"].'</td>
                                 <td>'.$row["sname"].'</td>
-                                <td>'.$row["lname"].'</td>
                                 <td>'.$row["date"].'</td>
                                 <td>'.$row["start_time"].'</td>
                                 <td>'.$row["end_time"].'</td>
-                                <td><a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" href="deletescript.php?aid='.$row['app_id'].'">CANCEL</a></td>
-                            </tr>';
+                                 <td><a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" href="attendance_script.php?aid='.$row['app_id'].'">ATTENDED</a></td>
+                                  </tr>';
                              }
                                 ?>
                         </tbody>
@@ -175,7 +196,7 @@
                 </div>
             </main>
         </div>
-     <!--    <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
+  <!--       <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 

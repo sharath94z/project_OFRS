@@ -42,7 +42,32 @@ include 'create_schedulescript.php';
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!--    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">-->
         <link rel="stylesheet" href="styles.css">
+        <script type="text/javascript">
+            
+            function postData(event){
+event.preventDefault()
+$.ajax({
+    type: "POST",
+    url: "create_schedulescript.php",
+    data: $('#sform').serialize()
+    }).done(function( result ) {
+        // do something
+//          $("#status_text").html(data);
+      //   $('#sample3').val('');
+    $("#successMessage").show();
+//     $( "#dialog" ).dialog();
+  $( "#dialog-message" ).dialog({
+      modal: true,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
 
+    });
+}
+        </script>
 
         <!---->
 
@@ -151,24 +176,27 @@ include 'create_schedulescript.php';
             </div>
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
-                    <form name="schedule" method="post" id="sform" action="create_schedulescript.php">
+                <form name="schedule" method="post" id="sform">
                         <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="tags" name="srname">
+                            <input class="mdl-textfield__input" type="text" id="tags" name="srname" required>
                             <label class="mdl-textfield__label" for="tags">services</label>
                         </div>
                          <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                       <input type="text" id="datepicker" name="date" class="mdl-textfield__input">
+                       <input type="text" id="datepicker" name="date" class="mdl-textfield__input" required>
                          <label class="mdl-textfield__label" for="datepicker">Date</label>
                         </div>
-                        <p>Start Time:<input type="time" name="s_time" class="mdl-textfield__input"/></p>
-                        <p>End Time:<input type="time" name="e_time" class="mdl-textfield__input"/></p>
+                        <p>Start Time:<input type="time" name="s_time" class="mdl-textfield__input" required/></p>
+                        <p>End Time:<input type="time" name="e_time" class="mdl-textfield__input" required/></p>
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)" type="submit">Submit</button>
                     </form>
                 </div>
             </main>
+            <div id="dialog-message" title="confirmation" style="display:none;">
+  <p>Schedule Created</p>
+</div>
         </div>
 
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js" charset="utf-8"></script>
         <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>

@@ -2,9 +2,9 @@
   session_start();
 //PUT THIS HEADER ON TOP OF EACH UNIQUE PAGE
   if(!isset($_SESSION['username'])){
-    header("location:../login/main_login.php");
+    header("location:../provider_login/main_login.php");
   }
- include 'cancellation_script.php';
+ include 'scancelscript.php';
 
 ?>
     <!doctype html>
@@ -43,6 +43,29 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!--    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.cyan-light_blue.min.css">-->
         <link rel="stylesheet" href="styles.css">
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 450
+      },
+      hide: {
+        effect: "blind",
+        duration:350
+      }
+    });
+ 
+    $( "#opener" ).on( "click", function() {
+      $( "#dialog" ).dialog( "open" );
+    });
+  } );
+  </script>
         <style>
             @font-face {
                 font-family: 'super-text';
@@ -64,7 +87,6 @@
                 /*background-color: #BDBDBD;*/
                 /*background-color:#F5F5F5;*/
                 background-color:#bdc3c7;
-            
             }
             h5{
                 font-size: 18px;
@@ -73,7 +95,6 @@
             
             tbody {
                 font-size: 16px;
-
             }
         </style>
     </head>
@@ -137,18 +158,14 @@
             </div>
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
-                    <table class="mdl-data-table mdl-js-data-table">
-                        <!--                       a.app_id,p.provider_name,l.lname,s.sname,sc.date,sc.start_time,sc.end_time-->
-                        <thead id="thead">
+                <h3>Schedule Cancellation</h3>
+                    <table class="mdl-data-table mdl-js-data-table">                        <thead id="thead">
                             <tr>
-                                <th class="mdl-data-table__cell--non-numeric"><h5>Appointment ID</h5></th>
-                                <th class="mdl-data-table__cell--non-numeric"><h5>Provider Name</h5></th>
+                                <th class="mdl-data-table__cell--non-numeric"><h5>Schedule_Id</h5></th>
+                                <th class="mdl-data-table__cell--non-numeric"><h5>Location</h5></th>
                                 <th><h5>Service</h5></th>
-                                <th><h5>Location</h5></th>
-                                <th>
-                                    <h5>Date</h5></th>
-                                <th>
-                                    <h5>Start Time</h5></th>
+                                <th><h5>Date</h5></th>
+                                   <th> <h5>Start Time</h5></th>
                                 <th>
                                     <h5>End Time</h5></th>
                                 <th>
@@ -159,23 +176,41 @@
                             <?php
                              while($row = $result->fetch_assoc()) { 
                            echo '<tr>
-                                <td class="mdl-data-table__cell--non-numeric">'.$row["app_id"].'</td>
-                                <td>'.$row["provider_name"].'</td>
-                                <td>'.$row["sname"].'</td>
+                                <td class="mdl-data-table__cell--non-numeric">'.$row["schedule_id"].'</td>
                                 <td>'.$row["lname"].'</td>
+                                <td>'.$row["sname"].'</td>
                                 <td>'.$row["date"].'</td>
                                 <td>'.$row["start_time"].'</td>
                                 <td>'.$row["end_time"].'</td>
-                                <td><a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" href="deletescript.php?aid='.$row['app_id'].'">CANCEL</a></td>
+                                 <td><a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" href="sdeletescript.php?sid='.$row['schedule_id'].'">CANCEL</a></td>
                             </tr>';
+
                              }
                                 ?>
                         </tbody>
                     </table>
                 </div>
             </main>
+     <!--        <div id="dialog" title="Basic dialog">
+ <form name="sample" method="post" action="scheduleupdate.php?sid='.$row['schedule_id'].'" >
+   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="date" id="sample3" name="date" data-validation="required">
+                                <label class="mdl-textfield__label" for="date">DATE</label>
+                            </div>
+                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="time" id="sample3" name="stime" data-validation="required">
+                                <label class="mdl-textfield__label" for="stime">start Time</label>
+                            </div>
+                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="sample3" name="etime" data-validation="required">
+                                <label class="mdl-textfield__label" for="etime">End Time</label>
+                            </div>
+   <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white" type="submit">submit</button>
+   </form>
+</div> -->
+ 
         </div>
-     <!--    <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
+  <!--       <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 

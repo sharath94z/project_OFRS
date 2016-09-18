@@ -52,6 +52,30 @@
                 z-index: 900;
             }
         </style>
+         <!--Load the AJAX API-->
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     5],
+          ['Eat',      2],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
     </head>
 
     <body>
@@ -101,8 +125,8 @@
                     <a class="mdl-navigation__link" href="../provider_panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
                     <a class="mdl-navigation__link" href="../provider_panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
                     <a class="mdl-navigation__link" href="../provider_panel/create_schedule.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>create schedule</a>
-                    <a class="mdl-navigation__link" href="../provider_panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/scancel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/cvisit.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Attendance</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
@@ -114,13 +138,7 @@
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
                     <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                        <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" 
-                        class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-                            <use xlink:href="#piechart" mask="url(#piemask)" />
-                            <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82
-                                <tspan font-size="0.2" dy="-0.07">%</tspan>
-                            </text>
-                        </svg>
+                      <div id="donutchart" style="width: 700px; height: 300px;"></div>
                         <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
                             <use xlink:href="#piechart" mask="url(#piemask)" />
                             <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82

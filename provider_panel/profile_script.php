@@ -5,13 +5,14 @@
 global $user;
 if(isset($_SESSION['username'])){
     $user = $_SESSION['username'];}
- global $cname;global $phno;global $loc;
+ global $cname,$phno,$loc;
 if(isset($_POST['cname'])){ $cname = $_POST['cname']; }
 if(isset($_POST['phno'])){ $phno = $_POST['phno']; }
-if(isset($_POST['loc'])){ $loc = $_POST['loc']; }
+if(isset($_POST['location'])){ $loc = $_POST['location']; }
+
 // $lname = $_POST['lname'];
 //$user variable contains the username
- 
+
   $tbl_name = "members";
   // $host = "localhost"; // Host name
   // $username = "root"; // Mysql username
@@ -31,8 +32,10 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 // echo $mysqli->host_info . "\n";
-$result = $mysqli->query("UPDATE `provider_members` SET `location`='$loc',`phone_number`='$phno',`provider_name`='$cname' WHERE username='$user'");
-// printf("Affected rows (SELECT): %d\n", $mysqli->affected_rows);
 
+$result = $mysqli->query("UPDATE `provider_members` SET `location`='$loc',`phone_number`='$phno',`provider_name`='$cname' WHERE username='$user'");
+
+
+// printf("Affected rows (SELECT): %d\n", $mysqli->affected_rows);
 
  ?>

@@ -69,6 +69,9 @@
             .mdl-navigation__link {
                 font-size: 15px;
             }
+            /*.mdl-card__supporting-text{
+                color:#e74c3c;
+            }*/
         </style>
         <script>
             $(function () {
@@ -158,7 +161,7 @@
                     </div>
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation" >home</i>Home</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
                     <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
@@ -232,7 +235,7 @@ echo '<div class="mdl-cell mdl-cell--4-col">
                             <h2 class="mdl-card__title-text">'.$row["sname"].'</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                        '.$row["lname"]."&nbsp; &nbsp;".$row["start_time"]."&nbsp; &nbsp;".$row["end_time"].'
+                        '."LOCATION:".$row["lname"]."&nbsp; &nbsp;".$row["start_time"]."&nbsp; &nbsp;".$row["end_time"]."</br>&nbsp;DATE:".$row["date"].'
                         </div></strong>
                         <div class="mdl-card__actions mdl-card--border">
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="bookappointment.php?editid='.$row['schedule_id'].'" id="btn_submit" >

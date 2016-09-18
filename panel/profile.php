@@ -61,7 +61,14 @@ include 'profile_script.php';
 
 
         <script>
+         $(function () {
+                $("#location").selectmenu();
+            });
             $(function () {
+ $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+
                 var availableTags = [
       "ActionScript",
       "Bangalore",
@@ -102,9 +109,9 @@ $.ajax({
     }).done(function( result ) {
         // do something
 //          $("#status_text").html(data);
-        $('#sample3').val('');
-        $('#sample4').val('');
-      $('#lname').val('');
+      //   $('#sample3').val('');
+      //   $('#sample4').val('');
+      // $('#lname').val('');
     $("#successMessage").show();
 //     $( "#dialog" ).dialog();
     $( "#dialog-message" ).dialog({
@@ -217,16 +224,17 @@ $.ajax({
                         <div class="top-row">
                             <!-- optional-->
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="sample3" name="fname">
+                                <input class="mdl-textfield__input" type="text" pattern="^[a-z\d\.]{5,}$" id="sample3" name="fname" value="<?php echo $fn;?>" required>
                                 <label class="mdl-textfield__label" for="sample3">First Name</label>
+                                 <span class="mdl-textfield__error">enter alphabets </span>
                             </div>&nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="lname" name="lname">
+                                <input class="mdl-textfield__input" type="text" id="lname" name="lname" value="<?php echo $ln;?>"required>
                                 <label class="mdl-textfield__label" for="lname">Last Name:</label>
                             </div>
                             <br>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" name="phno">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" name="phno" value="<?php echo $ph;?>" required>
                                 <label class="mdl-textfield__label" for="sample4">Phone Number</label>
                                 <span class="mdl-textfield__error">Input is not a number!</span>
                             </div>
@@ -246,16 +254,31 @@ $.ajax({
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="date" id="sample4" name="dob">
+                            <!-- <input class="mdl-textfield__input" type="date" id="sample4" name="dob"> -->
+                             <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                       <input type="date" name="dob" class="mdl-textfield__input" id="sample4">
+                         <label class="mdl-textfield__label" for="datepicker">Date</label>
+                        </div>
                             <!--    <label class="mdl-textfield__label" for="sample4">DATE OF BIRTH</label>-->
-                            <span class="mdl-textfield__error">Input is not a number!</span>
+                          <!--   <span class="mdl-textfield__error">Input is not a number!</span> -->
                         </div>
 
                         <br>
-                        <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <label class="mdl-textfield__label" for="location">Location</label>
+                                <select class="mdl-textfield__input" name="loc" id="location">
+                                    <option value="all" selected="selected">All</option>
+                                    <?php 
+$sql = $mysqli->query("SELECT lname FROM locations ORDER BY lname ASC");
+        while($row = $sql->fetch_assoc()){
+echo "<option>".$row['lname']."</option>";
+}
+?>                                </select>
+                            </div>
+                       <!--  <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="tags" name="loc">
                             <label class="mdl-textfield__label" for="tags">location</label>
-                        </div>
+                        </div> -->
                         <br>
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent  mdl-button--colored mdl-color-text--white" id="btn_submit" onclick="postData(event)" type="submit">Submit</button>
                         <div id="successMessage" style="display:none;"> Data has been sucessfully updated </div>
