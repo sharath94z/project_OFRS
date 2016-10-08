@@ -98,16 +98,16 @@
                     </div>
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+                    <a class="mdl-navigation__link" href="../panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
                     <a class="mdl-navigation__link" href="../panel/cinfo.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
                      <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Edit Profile</a>
                     <a class="mdl-navigation__link" href="../panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
                     <a class="mdl-navigation__link" href="../panel/cancellation.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href="../map/savedata.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <!-- <a class="mdl-navigation__link" href="../map/savedata.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a> -->
+                    <a class="mdl-navigation__link" href="../panel/map.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Maps</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                    <a class="mdl-navigation__link" href="../payment/payment.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Buy Credits</a>
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a> -->
                     <div class="mdl-layout-spacer"></div>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
@@ -149,7 +149,7 @@
                         </svg>
                     </div>
                     <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-                        <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                        <!-- <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
                             <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
                                 <h2 class="mdl-card__title-text">Updates</h2>
                             </div>
@@ -159,9 +159,9 @@
                             <div class="mdl-card__actions mdl-card--border">
                                 <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
                             </div>
-                        </div>
-                        <div class="demo-separator mdl-cell--1-col"></div>
-                        <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
+                        </div> -->
+                        <!-- <div class="demo-separator mdl-cell--1-col"></div> -->
+                       <!--  <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
                             <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
                                 <h3>View options</h3>
                                 <ul>
@@ -196,7 +196,7 @@
                                 <div class="mdl-layout-spacer"></div>
                                 <i class="material-icons">location_on</i>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </main>
@@ -248,7 +248,7 @@
                 </g>
             </defs>
         </svg>
-        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
+       <!--  <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </body>
 

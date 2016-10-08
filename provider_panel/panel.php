@@ -4,6 +4,7 @@
   if(!isset($_SESSION['username'])){
     header("location:../login/main_login.php");
   }
+  include 'panelscript.php';
 ?>
     <!doctype html>
     <html lang="en">
@@ -60,15 +61,15 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['Work',     5],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Zumba',     <?php echo $c ?>],
+          ['Yoga',    <?php echo $y ?>],
+          ['Crossfit',  <?php echo $c; ?>]
+          // ['Watch TV', 2],
+          // ['Sleep',    7]
         ]);
 
         var options = {
-          title: 'My Daily Activities',
+          title: 'Total Appointments',
           pieHole: 0.4,
         };
 
@@ -76,6 +77,37 @@
         chart.draw(data, options);
       }
     </script>
+     <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Gender", "Count", { role: "style" } ],
+        ["Male", <?php echo $male ?>, "#f44336"],
+        ["Female",<?php echo $female ?>, "#E91E63"],
+        // ["Gold", 19.30, "gold"],
+        // ["Platinum", 21.45, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "MALE VS Female, counts",
+        width: 600,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
     </head>
 
     <body>
@@ -127,10 +159,10 @@
                     <a class="mdl-navigation__link" href="../provider_panel/create_schedule.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>create schedule</a>
                     <a class="mdl-navigation__link" href="../provider_panel/scancel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
                     <a class="mdl-navigation__link" href="../provider_panel/cvisit.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Attendance</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a> -->
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a> -->
+                   <!--  <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a> -->
                     <div class="mdl-layout-spacer"></div>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
@@ -138,7 +170,12 @@
             <main class="mdl-layout__content mdl-color--grey-100">
                 <div class="mdl-grid demo-content">
                     <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                      <div id="donutchart" style="width: 700px; height: 300px;"></div>
+                      <div id="donutchart" style="width: 750px; height: 350px;"></div>
+                      <div id="columnchart_values" style="width: 900px; height: 300px;"></div></br>
+                      <div class="blank" style="height:50px;">
+                      </div></div>
+                      </br>
+                      </br></br></br></br></br>
                         <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
                             <use xlink:href="#piechart" mask="url(#piemask)" />
                             <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82
@@ -167,53 +204,7 @@
                         </svg>
                     </div>
                     <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
-                        <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-                            <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                                <h2 class="mdl-card__title-text">Updates</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                                Non dolore elit adipisicing ea reprehenderit consectetur culpa.
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
-                            </div>
-                        </div>
-                        <div class="demo-separator mdl-cell--1-col"></div>
-                        <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
-                            <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
-                                <h3>View options</h3>
-                                <ul>
-                                    <li>
-                                        <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                            <input type="checkbox" id="chkbox1" class="mdl-checkbox__input">
-                                            <span class="mdl-checkbox__label">Click per object</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="chkbox2" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                            <input type="checkbox" id="chkbox2" class="mdl-checkbox__input">
-                                            <span class="mdl-checkbox__label">Views per object</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="chkbox3" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                            <input type="checkbox" id="chkbox3" class="mdl-checkbox__input">
-                                            <span class="mdl-checkbox__label">Objects selected</span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label for="chkbox4" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                                            <input type="checkbox" id="chkbox4" class="mdl-checkbox__input">
-                                            <span class="mdl-checkbox__label">Objects viewed</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Change location</a>
-                                <div class="mdl-layout-spacer"></div>
-                                <i class="material-icons">location_on</i>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

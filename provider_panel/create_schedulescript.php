@@ -10,6 +10,7 @@ global $user;
 if(isset($_SESSION['username'])){
     $user = $_SESSION['username'];}
 $newid = uniqid (rand(), false); 
+
 //date_create
 //$var = '20/04/2012';
 //$date_f = str_replace('/', '-', $date);

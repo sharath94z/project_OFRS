@@ -69,48 +69,50 @@ include 'profile_script.php';
     $( "#datepicker" ).datepicker();
   } );
 
-                var availableTags = [
-      "ActionScript",
-      "Bangalore",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
                 $("#tags").autocomplete({
                     source: availableTags
                 });
             });
 
         //ajax
-
+minlength: 5,
+         digits: true
             function postData(event){
+                $('#form').validate({
+                     rules: {
+        fname: {
+                required: true,
+            },
+        lname: {
+            required: true,
+        },          
+        phno: {
+            required: true,
+            minlength: 10,
+         digits: true,
+        },
+    },
+    messages: {
+        fname: {
+                required: "Please enter first name",
+            },
+        lname: {
+            required: "Please enter last name",
+        },          
+        phno: {
+            required: "Please enter the phone number!",
+            minlength: "enter 10 digits phone number",
+        },
+      
+    },
 event.preventDefault()
+submitHandler: function(form) {
 $.ajax({
     type: "POST",
     url: "profile_script.php",
     data: $('#myForm').serialize()
     }).done(function( result ) {
         // do something
-//          $("#status_text").html(data);
-      //   $('#sample3').val('');
-      //   $('#sample4').val('');
       // $('#lname').val('');
     $("#successMessage").show();
 //     $( "#dialog" ).dialog();
@@ -122,8 +124,10 @@ $.ajax({
         }
       }
     });
-
+    window.location.href = "../panel/cinfo.php";
     });
+}
+}
 }
             console.log("data updated");
             //ajax close
@@ -203,15 +207,16 @@ $.ajax({
                     </div>
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href="../panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>Profile</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                         <a class="mdl-navigation__link" href="../panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+                    <a class="mdl-navigation__link" href="../panel/cinfo.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
+                     <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Edit Profile</a>
+                    <a class="mdl-navigation__link" href="../panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
+                    <a class="mdl-navigation__link" href="../panel/cancellation.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <!-- <a class="mdl-navigation__link" href="../map/savedata.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a> -->
+                    <a class="mdl-navigation__link" href="../panel/map.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Maps</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                    <a class="mdl-navigation__link" href="../payment/payment.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Buy Credits</a>
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a> -->
                     <div class="mdl-layout-spacer"></div>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
@@ -226,11 +231,12 @@ $.ajax({
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" pattern="^[a-z\d\.]{5,}$" id="sample3" name="fname" value="<?php echo $fn;?>" required>
                                 <label class="mdl-textfield__label" for="sample3">First Name</label>
-                                 <span class="mdl-textfield__error">enter alphabets </span>
+                                 <span class="mdl-textfield__error">enter your first </span>
                             </div>&nbsp;&nbsp;&nbsp;&nbsp;
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="lname" name="lname" value="<?php echo $ln;?>"required>
                                 <label class="mdl-textfield__label" for="lname">Last Name:</label>
+                                 <span class="mdl-textfield__error">enter your last name</span>
                             </div>
                             <br>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -253,21 +259,19 @@ $.ajax({
                             </label>
                         </div>
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <!-- <input class="mdl-textfield__input" type="date" id="sample4" name="dob"> -->
+                        <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+ -->                            <!-- <input class="mdl-textfield__input" type="date" id="sample4" name="dob"> -->
                              <div class="ui-widget mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                       <input type="date" name="dob" class="mdl-textfield__input" id="sample4">
+                       <input type="date" name="dob" class="mdl-textfield__input">
                          <label class="mdl-textfield__label" for="datepicker">Date</label>
                         </div>
-                            <!--    <label class="mdl-textfield__label" for="sample4">DATE OF BIRTH</label>-->
-                          <!--   <span class="mdl-textfield__error">Input is not a number!</span> -->
-                        </div>
+    
 
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <label class="mdl-textfield__label" for="location">Location</label>
                                 <select class="mdl-textfield__input" name="loc" id="location">
-                                    <option value="all" selected="selected">All</option>
+                                    <option value="all" selected="selected">location</option>
                                     <?php 
 $sql = $mysqli->query("SELECT lname FROM locations ORDER BY lname ASC");
         while($row = $sql->fetch_assoc()){

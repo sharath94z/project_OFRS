@@ -1,4 +1,4 @@
-  
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -176,6 +176,9 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 
     directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });       
+       
+
+          //var placeId =<?php echo(json_encode($data)); ?>;
           //alert(myVariable[0]);
           //var Variable=["ChIJBzipd7IVrjsR0KudszePUYg","ChIJMW_18k0UrjsR8pEDxqXIjdY"];
           //var placeId=['myVariable[0]'];
@@ -183,7 +186,7 @@ var directionsService = new google.maps.DirectionsService();
           //alert(placeId[0]);
           //alert(placeId[1]);
           // var placeId = document.getElementById('place-id').value;
-          var placeId=["ChIJBzipd7IVrjsR0KudszePUYg", "ChIJMW_18k0UrjsR8pEDxqXIjdY","ChIJ-8A9MloUrjsRgxniaRgZSmk","ChIJ60v1yDA8rjsRUmUsQ_LIPcg","ChIJ2ddlZ5gVrjsRh1BOAaf-ors","ChIJK6dJcw0VrjsRRj3d4aE-0PM"];
+          var placeId=["ChIJBzipd7IVrjsR0KudszePUYg", "ChIJMW_18k0UrjsR8pEDxqXIjdY","ChIJ-8A9MloUrjsRgxniaRgZSmk","ChIJ60v1yDA8rjsRUmUsQ_LIPcg","ChIJ2ddlZ5gVrjsRh1BOAaf-ors","ChIJK6dJcw0VrjsRRj3d4aE-0PM","ChIJHae5wKAVrjsRuBiwc0rVqLc","ChIJreGV2wcVrjsRNIbvmXDG89Q"];
           for (i = 0; i <placeId.length; i++) {
         geocoder.geocode({'placeId': placeId[i]}, function(results, status) {
           if (status === google.maps.GeocoderStatus.OK) {
@@ -352,7 +355,7 @@ var directionsService = new google.maps.DirectionsService();
         placeholder="place iD">
           
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBAl7vpOMdLRssc2hRm3YnsO_w9yeOiJ5A&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGJ7k_vzdPulMoTlRt2TyxGpGAPm1Z8bc&callback=initMap">
     </script>
          Distance<input type="text" id="distance"/>
        Duration<input type="text" id="duration"/> 
@@ -375,7 +378,7 @@ var directionsService = new google.maps.DirectionsService();
 <tr>
     
     <td>
-        <div id="dvPanel" style="width: 500px; height: 500px">
+        <div id="dvPanel" style="width: 100px; height: 100px">
         </div>
     </td>
 </tr>

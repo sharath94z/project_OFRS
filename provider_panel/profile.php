@@ -91,7 +91,28 @@ include 'profile_script.php';
             //ajax
 
             function postData(event) {
+                 $('#form').validate({
+                     rules: {
+        cname: {
+                required: true,
+            },
+        phno: {
+            required: true,
+        },          
+    },
+    messages: {
+        cname: {
+                required: "Please enter first name",
+            },        
+        phno: {
+            required: "Please enter the phone number!",
+            minlength: "enter 10 digits phone number",
+        },
+      
+    },
                 event.preventDefault()
+                submitHandler: function(form) {
+
                 $.ajax({
                     type: "POST",
                     url: "profile_script.php",
@@ -99,8 +120,8 @@ include 'profile_script.php';
                 }).done(function (result) {
                     // do something
                     //          $("#status_text").html(data);
-                    $('#sample3').val('');
-                    $('#sample4').val('');
+                    // $('#sample3').val('');
+                    // $('#sample4').val('');
                     $("#successMessage").show();
                     //     $( "#dialog" ).dialog();
                     $("#dialog-message").dialog({
@@ -114,6 +135,8 @@ include 'profile_script.php';
 
                 });
             }
+        });
+             }
             console.log("data updated");
             //ajax close
         </script>
@@ -190,14 +213,14 @@ include 'profile_script.php';
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
                     <a class="mdl-navigation__link" href="../provider_panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-                    <a class="mdl-navigation__link" href="../provider_panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">face</i>Profile</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/create_schedule.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>create schedule</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/scancel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/cvisit.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Attendance</a>
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a> -->
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a> -->
+                   <!--  <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a> -->
                     <div class="mdl-layout-spacer"></div>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>

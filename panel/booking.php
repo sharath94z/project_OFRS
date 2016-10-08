@@ -161,15 +161,16 @@
                     </div>
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-                    <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                        <a class="mdl-navigation__link" href="../panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+                    <a class="mdl-navigation__link" href="../panel/cinfo.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
+                     <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Edit Profile</a>
+                    <a class="mdl-navigation__link" href="../panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
+                    <a class="mdl-navigation__link" href="../panel/cancellation.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <!-- <a class="mdl-navigation__link" href="../map/savedata.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a> -->
+                    <a class="mdl-navigation__link" href="../panel/map.html"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Maps</a>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                    <a class="mdl-navigation__link" href="../payment/payment.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Buy Credits</a>
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a> -->
                     <div class="mdl-layout-spacer"></div>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
@@ -219,6 +220,7 @@ echo "<option>".$row['sname']."</option>";
                             </div>
                             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">Filter</button>
                         </form>
+                         <a href="../panel/map.html" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View MAP</a> 
                     </div>
                     <div class="mdl-grid">
                         <?php
@@ -227,6 +229,7 @@ echo "<option>".$row['sname']."</option>";
                       while($row = $result->fetch_assoc()) {    
           // echo "<br> sid: ". $row["schedule_id"]. " -locations: ". $row["lname"]. "-service" . $row["sname"] . "<br>";
                           //TIME_FORMAT( `day_open_time`, "%h:%i %p" )
+                        
 
 echo '<div class="mdl-cell mdl-cell--4-col">
     <div class="demo-card-square mdl-card mdl-shadow--2dp">
@@ -235,7 +238,10 @@ echo '<div class="mdl-cell mdl-cell--4-col">
                             <h2 class="mdl-card__title-text">'.$row["sname"].'</h2>
                         </div>
                         <div class="mdl-card__supporting-text">
-                        '."LOCATION:".$row["lname"]."&nbsp; &nbsp;".$row["start_time"]."&nbsp; &nbsp;".$row["end_time"]."</br>&nbsp;DATE:".$row["date"].'
+                        <table>
+                        <tr><td>
+                        '."LOCATION:&nbsp;".$row["lname"]."</td></tr><tr><td>TIME:&nbsp;".$row["start_time"]."&nbsp;TO&nbsp;".$row["end_time"]."</td></tr><tr><td>DATE:&nbsp;".$row["date"].'</td></tr>
+                        </table>
                         </div></strong>
                         <div class="mdl-card__actions mdl-card--border">
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="bookappointment.php?editid='.$row['schedule_id'].'" id="btn_submit" >
@@ -252,13 +258,19 @@ echo '<div class="mdl-cell mdl-cell--4-col">
 
             </main>
             </div>
-            <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
+<!--             <a href="../panel/map.html" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View MAP</a> -->
             <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
             <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
             <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
             <div id="dialog-message" title="confirmation" style="display:none;">
                 <p>Data has been sucessfilly updated</p>
             </div>
+          <!--   <script>
+            if (<?php echo $nocredits ?> < 1) {
+   document.getElementById("btn_submit").style.visibility = "hidden";
+}
+            </script> -->
+             
     </body>
 
     </html>

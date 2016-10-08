@@ -1,7 +1,7 @@
 <?php
 @session_start();
 include '../global_config/databaseconfig.php';
-global $user,$scheduleid,$newid;
+global $user,$scheduleid,$newid,$nocredits;
 if(isset($_SESSION['username'])){
     $user = $_SESSION['username'];}
 if(isset($_GET['editid'])){ $scheduleid = $_GET['editid']; }
@@ -22,6 +22,11 @@ if ($mysqli->connect_errno) {
 }
 	$newid = uniqid (rand(), false);
 $cid=$mysqli->query("select id from members where username='$user'");
+$cred=$mysqli->query("select credits from members where username='$user'");
+$row = mysqli_fetch_assoc($cred);
+$nocredits=$row['credits'];
+echo $nocredits;
+
 $row = mysqli_fetch_assoc($cid);
 $custid=$row['id'];
 $details=$mysqli->query("SELECT `schedule_id`, `providerid_fk`, `serviceid_fk`, `locationid_fk`, `date`, `start_time`, `end_time` FROM `schedule` WHERE `schedule_id`='$scheduleid'");
@@ -30,6 +35,14 @@ $pid = $row['providerid_fk'];
 $sid = $row['serviceid_fk'];
 $lid = $row['locationid_fk'];
 echo $pid;
+if($nocredits > 0){
  $result=$mysqli->query("INSERT INTO `appointment`(`app_id`, `custfk_id`, `schedulefk_id`, `providerid_fk`, `serviceid_fk`, `locationid_fk`) VALUES ('$newid','$custid','$scheduleid','$pid','$sid','$lid')");
+  $result = $mysqli->query("UPDATE `members` SET `credits`=`credits`-1 WHERE username='$user' and credits>0");
+}
+else
+{
+	echo "<h1>NO CREDITS</h1>";
+}
+
 header("location:../panel/booking.php");
  ?>

@@ -6,6 +6,7 @@ if(isset($_SESSION['username'])){
     $user = $_SESSION['username'];}
 if(isset($_GET['aid'])){ 
     $aid = $_GET['aid'];
+    echo $aid;
 //     $del= $mysqli->query("DELETE FROM `login`.`appointment` WHERE `appointment`.`app_id` = \'$aid'");
 //    delete_appointment($aid);
                }
@@ -22,7 +23,7 @@ if ($mysqli->connect_errno) {
 $cid=$mysqli->query("select id from members where username='$user'");
 $row = mysqli_fetch_assoc($cid);
 $custid = $row['id'];
- $result = $mysqli->query( "select a.app_id,p.provider_name,l.lname,s.sname,DATE_FORMAT(sc.date,'%d-%m-%Y') as date,DATE_FORMAT(sc.start_time,'%h:%i %p') as start_time,DATE_FORMAT(sc.end_time,'%h:%i %p') as end_time\n"
-    . "from appointment a join provider_members p on p.id = a.providerid_fk join locations l on l.pincode = a.locationid_fk join services s on s.service_id = a.serviceid_fk\n"
-    . "join schedule sc on sc.schedule_id = a.schedulefk_id where a.custfk_id = '$custid' AND sc.date >= CURDATE()");
+ $result = $mysqli->query( "DELETE FROM `login`.`appointment` WHERE `appointment`.`app_id` ='$aid'");
+ $increment = $mysqli->query("UPDATE `members` SET `credits`=`credits`+1 WHERE username='$user'");
+header("location:../panel/cancellation.php");
  ?>

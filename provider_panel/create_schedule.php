@@ -45,17 +45,46 @@ include 'create_schedulescript.php';
         <script type="text/javascript">
             
             function postData(event){
+                 $('#form').validate({
+                     rules: {
+        srname: {
+                required: true,
+            },
+        date: {
+            required: true,
+        },          
+        s_time: {
+            required: true,
+        },
+         e_time: {
+            required: true,
+        },
+    },
+    messages: {
+        srname: {
+                required: "Please enter first name",
+            },
+        date: {
+            required: "Please enter last name",
+        },          
+        s_time: {
+            required: "Please enter the phone number!",
+        },
+         e_time: {
+            required: "Please enter the phone number!",
+           
+        },
+      
+    },
 event.preventDefault()
+submitHandler: function(form) {
 $.ajax({
     type: "POST",
     url: "create_schedulescript.php",
     data: $('#sform').serialize()
     }).done(function( result ) {
-        // do something
-//          $("#status_text").html(data);
-      //   $('#sample3').val('');
+        alert("schedule created");
     $("#successMessage").show();
-//     $( "#dialog" ).dialog();
   $( "#dialog-message" ).dialog({
       modal: true,
       buttons: {
@@ -64,9 +93,10 @@ $.ajax({
         }
       }
     });
-
+} }
     });
 }
+
         </script>
 
         <!---->
@@ -161,15 +191,15 @@ $.ajax({
                     </div>
                 </header>
                 <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
-                    <a class="mdl-navigation__link" href="../panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Booking</a>
-                    <a class="mdl-navigation__link" href="../provider_panel/booking.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Forums</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/panel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/profile.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Profile</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/create_schedule.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>create schedule</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/scancel.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Cancellation</a>
+                    <a class="mdl-navigation__link" href="../provider_panel/cvisit.php"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Attendance</a>
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>Updates</a>
+                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">local_offer</i>Booking history</a> -->
+                    <!-- <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">shopping_cart</i>Purchases</a> -->
+                   <!--  <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">people</i>Social</a> -->
                     <div class="mdl-layout-spacer"></div>
                     <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
                 </nav>
@@ -191,14 +221,19 @@ $.ajax({
                     </form>
                 </div>
             </main>
-            <div id="dialog-message" title="confirmation" style="display:none;">
+           <div id="dialog-message" title="confirmation" style="display:none;">
   <p>Schedule Created</p>
+</div>
+
+<div id="successMessage" style="display:none;"">
+schedule created
 </div>
         </div>
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js" charset="utf-8"></script>
-        <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
+       <!--  <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a> -->
         <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+         
     </body>
 
     </html>
